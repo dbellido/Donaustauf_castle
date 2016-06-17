@@ -52,8 +52,9 @@
 	<script>
 
 	var pointcloudMapping = {
+			"pointclouds/index/tur_B/Tur_B.js": "Aerial Castle East",
 			"pointclouds/index/total/cloud.js": "Aerial Castle",
-			"pointclouds/index/tur_B/Tur_B.js": "Aerial Castle East"
+			
 			//"../Castle/resources/pointclouds/castleWest/cloud.js": "Aerial Castle West",
 			//"../Castle/resources/pointclouds/walls_outside/cloud.js": "External Walls",
 			//"../Castle/resources/pointclouds/door/cloud.js": "Entrance",
@@ -90,7 +91,7 @@
 		});
 		
 		viewer.setEDLEnabled(false);
-		viewer.setPointSize(1.6);
+		viewer.setPointSize(1.7);
 		viewer.setMaterial("RGB");
 		viewer.setFOV(60);
 		viewer.setPointSizing("Fixed");
@@ -111,9 +112,9 @@
 		//	
 		//);
 		
-		
-		viewer.addPointCloud("pointclouds/index/total/cloud.js");
 		viewer.addPointCloud("pointclouds/index/tur_B/Tur_B.js");
+		viewer.addPointCloud("pointclouds/index/total/cloud.js");
+		
 		
 		viewer.loadGUI();
 		
