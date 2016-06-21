@@ -51,6 +51,29 @@
 	
 	<script>
 	
+var pointcloudMapping = {
+			"pointclouds/Donaustauf_castle/cloud.js": "Aerial Castle",
+			"pointclouds/Tur_B/Tur_B.js": "Tur_B",
+			
+		}
+
+		var pcPath = [];
+		var index = 0;
+
+		for (url in pointcloudMapping) {
+	      	pcPath.push(url);
+	      	console.log(url);
+		}
+
+		function nextPcl(){
+			index++;
+			if (index < pcPath.length){
+				viewer.addPointCloud(pcPath[index]);
+				// console.log();
+				//etichette.push(pointcloudMapping[pcPath[index]]);
+			}
+		}
+
 		var onPointCloudLoaded = function(event){
 			// do stuff here that should be executed whenever a point cloud has been loaded.
 			// event.pointcloud returns the point cloud object
