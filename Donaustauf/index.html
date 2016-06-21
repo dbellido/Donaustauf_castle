@@ -52,8 +52,9 @@
 	<script>
 
 	var pointcloudMapping = {
-			"pointclouds/index/tur_B/cloud.js": "Aerial Castle East",
-			"pointclouds/index/total/cloud.js": "Aerial Castle",
+			"pointclouds/index/tur_B/cloud.js": "tur B",
+			"pointclouds/index/total/cloud.js": "Aerial castle",
+			"pointclouds/index/wall_4/cloud.js": "Wall 4"
 			
 			//"../Castle/resources/pointclouds/castleWest/cloud.js": "Aerial Castle West",
 			//"../Castle/resources/pointclouds/walls_outside/cloud.js": "External Walls",
@@ -84,6 +85,7 @@
 			// do stuff here that should be executed whenever a point cloud has been loaded.
 			// event.pointcloud returns the point cloud object
 			console.log("a point cloud has been loaded");
+			nextPcl();
 		}; 
 	
 		viewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
@@ -114,6 +116,7 @@
 		
 		viewer.addPointCloud("pointclouds/index/tur_B/cloud.js");
 		viewer.addPointCloud("pointclouds/index/total/cloud.js");
+		viewer.addPointCloud("pointclouds/index/wall_4/cloud.js");
 		
 		
 		viewer.loadGUI();
