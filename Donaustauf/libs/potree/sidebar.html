@@ -1012,7 +1012,7 @@ function initSceneList(){
 			
 			elLi.append(elLabel);
 			elLabel.append(elInput);
-			var pointcloudName = " " + (pointcloud.name ? pointcloud.name : "point cloud " + id);
+			var pointcloudName = " " + (pointcloud.name ? pointcloud.name : "point cloud " + pointcloudMapping[pointcloud.pcoGeometry.url][0]);
 			var elPointCloudName = document.createTextNode(pointcloudName);
 			elLabel.append(elPointCloudName);
 			
