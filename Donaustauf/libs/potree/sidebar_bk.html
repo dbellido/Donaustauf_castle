@@ -991,8 +991,9 @@ function initSceneList(){
 	
 	var id = 0;
 	// this works but it looks so wrong. any better way to create a closure around pointcloud?
-	//var etichette=["tur B","Aerial castle","Wall 4","Donaustauf village","Vegetation","ground","g_v","castle"]
+	var etichette=["tur B","Aerial castle","Wall 4","Donaustauf village","Vegetation","ground","g_v","castle"]
 	var addPointcloud = function(pointcloud){
+		(function(pointcloud){
 			var elLi = $('<li>');
 			var elLabel = $('<label>');
 			var elInput = $('<input type="checkbox">');
@@ -1004,16 +1005,30 @@ function initSceneList(){
 			elLabel.addClass("menu-item");
 			elInput.click(function(event){
 				pointcloud.visible = event.target.checked;
+				if(viewer._2dprofile){
+					viewer._2dprofile.redraw();
+				}
 			});
 			
 			elLi.append(elLabel);
 			elLabel.append(elInput);
-
-			elLabel.append(document.createTextNode(" Point Cloud: " + pointcloudMapping[pcPath[id]]));
-		scenelist.append(elLi);
-
-		id++;
-	}
+			var pointcloudName = " " + (pointcloud.name ? pointcloud.name : "point cloud " + pointcloudMapping[pointcloud.pcoGeometry.url][0]);
+			var elPointCloudName = document.createTextNode(pointcloudName);
+			elLabel.append(elPointCloudName);
+			
+			scenelist.append(elLi);
+			
+			pointcloud.addEventListener("name_changed", function(e){
+				if(e.name){
+					elPointCloudName.textContent = " " + e.name;
+				}else{
+					elPointCloudName.textContent = " point cloud " + id;
+				}
+			});
+			
+			id++;
+		})(pointcloud);
+	};
 	
 	for(var i = 0; i < viewer.pointclouds.length; i++){
 		var pointcloud = viewer.pointclouds[i];
@@ -1023,49 +1038,6 @@ function initSceneList(){
 	viewer.addEventListener("pointcloud_loaded", function(event){
 		addPointcloud(event.pointcloud);
 	});
-
-    //TO ADD THE INSERTED IMAGES AS LAYERS IN THE SCENE TAB - THIS IS AN EXAMPLE FOR TWO IMAGES, THE IMAGES SHOULD BE IMPORTED FROM THE MAINS PAGE/INDEX 
-    //#########################################################################################################
-		var elLi = $('<li>');
-		var elLabel = $('<label>');
-		var elInput = $('<input type="checkbox">');
-		
-		elInput[0].checked = false;
-		elInput[0].id = "scene_list_item_raster";
-		elLabel[0].id = "scene_list_item_label_raster";
-		elLabel[0].htmlFor = "scene_list_item_raster";
-		elLabel.addClass("menu-item");
-		elInput.click(function(event){
-			plane1.visible = event.target.checked;
-		});
-		
-		elLi.append(elLabel);
-		elLabel.append(elInput);
-		elLabel.append(document.createTextNode(" Ground Floor Plan"));
-		
-		scenelist.append(elLi);
-
-
-		var elLi = $('<li>');
-		var elLabel = $('<label>');
-		var elInput = $('<input type="checkbox">');
-		
-		elInput[0].checked = false;
-		elInput[0].id = "scene_list_item_raster_2";
-		elLabel[0].id = "scene_list_item_label_raster_2";
-		elLabel[0].htmlFor = "scene_list_item_raster_2";
-		elLabel.addClass("menu-item");
-		elInput.click(function(event){
-			plane2.visible = event.target.checked;
-		});
-		
-		elLi.append(elLabel);
-		elLabel.append(elInput);
-		elLabel.append(document.createTextNode(" First Floor Plan"));
-		
-		scenelist.append(elLi);
-
- //#######################################################################################################################################
 };
 
 initSettings = function(){

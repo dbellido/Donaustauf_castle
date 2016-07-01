@@ -53,17 +53,16 @@
 
 	var pointcloudMapping = {
 
-			"pointclouds/index/tur_B/cloud.js": "TUR",
-			"pointclouds/index/door/cloud.js": "Door"
 
-			
-			// "pointclouds/index/total/cloud.js": "Aerial castle",
-			// "pointclouds/index/wall_4/cloud.js": "Wall 4",
-			// "pointclouds/index/don_village/cloud.js": "Donaustauf village",
-			// "pointclouds/index/veg/cloud.js": "vegetation",
-			// "pointclouds/index/ohne/cloud.js": "ground",
-			// "pointclouds/index/cast/cloud.js": "g_v",
-			// "pointclouds/index/cast_2/cloud.js": "castle"
+
+			"pointclouds/index/tur_B/cloud.js": ["Tur B",0],
+			"pointclouds/index/total/cloud.js": ["Aerial castle",1],
+			"pointclouds/index/wall_4/cloud.js": ["Wall 4",2],
+			"pointclouds/index/don_village/cloud.js": ["Donaustauf village",3],
+			"pointclouds/index/veg/cloud.js": ["vegetation",4],
+			"pointclouds/index/ohne/cloud.js": ["ground",5],
+			"pointclouds/index/cast/cloud.js": ["g_v",6],
+			"pointclouds/index/cast_2/cloud.js": ["castle",7]
 
 			
 			//"../Castle/resources/pointclouds/castleWest/cloud.js": "Aerial Castle West",
@@ -86,7 +85,7 @@
 			if (index < pcPath.length){
 				viewer.addPointCloud(pcPath[index]);
 				 console.log();
-				//etichette.push(pointcloudMapping[pcPath[index]]);
+				etichette.push(pointcloudMapping[pcPath[index]]);
 			}
 		}
 
@@ -95,7 +94,7 @@
 			// do stuff here that should be executed whenever a point cloud has been loaded.
 			// event.pointcloud returns the point cloud object
 			console.log("a point cloud has been loaded");
-			nextPcl();
+			//nextPcl();
 		}; 
 	
 		viewer = new Potree.Viewer(document.getElementById("potree_render_area"), {
@@ -124,14 +123,16 @@
 		//	
 		//);
 		
+		
+
 		viewer.addPointCloud("pointclouds/index/tur_B/cloud.js");
-		//viewer.addPointCloud("pointclouds/index/tur_B/cloud.js");
-		//viewer.addPointCloud("pointclouds/index/wall_4/cloud.js");
-		//viewer.addPointCloud("pointclouds/index/don_village/cloud.js");
-		//viewer.addPointCloud("pointclouds/index/veg/cloud.js");
-		//viewer.addPointCloud("pointclouds/index/ohne/cloud.js");
-		//viewer.addPointCloud("pointclouds/index/cast/cloud.js");
-		//viewer.addPointCloud("pointclouds/index/cast_2/cloud.js");
+		viewer.addPointCloud("pointclouds/index/total/cloud.js");
+		viewer.addPointCloud("pointclouds/index/wall_4/cloud.js");
+		viewer.addPointCloud("pointclouds/index/don_village/cloud.js");
+		viewer.addPointCloud("pointclouds/index/veg/cloud.js");
+		viewer.addPointCloud("pointclouds/index/ohne/cloud.js");
+		viewer.addPointCloud("pointclouds/index/cast/cloud.js");
+		viewer.addPointCloud("pointclouds/index/cast_2/cloud.js");
 		
 		viewer.loadGUI();
 		
